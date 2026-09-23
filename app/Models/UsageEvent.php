@@ -14,11 +14,9 @@ class UsageEvent extends Model
         'merchant_id',
         'customer_id',
         'subscription_id',
-        'idempotency_key',
         'occurred_at',
-        'usage_date',
         'quantity',
-        'event_type',
+        'idempotency_key',
         'metadata',
     ];
 
@@ -26,7 +24,6 @@ class UsageEvent extends Model
     {
         return [
             'occurred_at' => 'datetime',
-            'usage_date' => 'date',
             'quantity' => 'integer',
             'metadata' => 'array',
         ];

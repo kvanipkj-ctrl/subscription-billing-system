@@ -15,15 +15,9 @@ class Subscription extends Model
         'merchant_id',
         'customer_id',
         'plan_id',
-        'previous_subscription_id',
+        'status',
         'starts_at',
         'ends_at',
-        'status',
-        'base_price_cents',
-        'included_units',
-        'overage_rate_cents',
-        'currency',
-        'billing_cycle',
     ];
 
     protected function casts(): array
@@ -31,9 +25,6 @@ class Subscription extends Model
         return [
             'starts_at' => 'datetime',
             'ends_at' => 'datetime',
-            'base_price_cents' => 'integer',
-            'included_units' => 'integer',
-            'overage_rate_cents' => 'integer',
         ];
     }
 
@@ -52,23 +43,9 @@ class Subscription extends Model
         return $this->belongsTo(Plan::class);
     }
 
-    public function previousSubscription(): BelongsTo
-    {
-        return $this->belongsTo(self::class, 'previous_subscription_id');
-    }
-
-    public function nextSubscriptions(): HasMany
-    {
-        return $this->hasMany(self::class, 'previous_subscription_id');
-    }
-
     public function usageEvents(): HasMany
     {
         return $this->hasMany(UsageEvent::class);
     }
 
-    public function invoiceLines(): HasMany
-    {
-        return $this->hasMany(InvoiceLine::class);
-    }
 }

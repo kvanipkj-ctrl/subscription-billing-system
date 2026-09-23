@@ -12,21 +12,20 @@ class InvoiceLine extends Model
 
     protected $fillable = [
         'invoice_id',
-        'subscription_id',
-        'line_type',
         'description',
         'quantity',
-        'unit_price_cents',
-        'amount_cents',
+        'unit_price',
+        'amount',
         'metadata',
+        'type',
     ];
 
     protected function casts(): array
     {
         return [
             'quantity' => 'integer',
-            'unit_price_cents' => 'integer',
-            'amount_cents' => 'integer',
+            'unit_price' => 'decimal:2',
+            'amount' => 'decimal:2',
             'metadata' => 'array',
         ];
     }
@@ -34,10 +33,5 @@ class InvoiceLine extends Model
     public function invoice(): BelongsTo
     {
         return $this->belongsTo(Invoice::class);
-    }
-
-    public function subscription(): BelongsTo
-    {
-        return $this->belongsTo(Subscription::class);
     }
 }

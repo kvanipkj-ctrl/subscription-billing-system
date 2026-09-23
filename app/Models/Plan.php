@@ -14,21 +14,22 @@ class Plan extends Model
     protected $fillable = [
         'merchant_id',
         'name',
-        'base_price_cents',
+        'description',
         'currency',
-        'billing_cycle',
+        'billing_interval',
+        'base_price',
         'included_units',
-        'overage_rate_cents',
-        'is_active',
+        'overage_unit_price',
+        'active',
     ];
 
     protected function casts(): array
     {
         return [
-            'base_price_cents' => 'integer',
+            'base_price' => 'decimal:2',
             'included_units' => 'integer',
-            'overage_rate_cents' => 'integer',
-            'is_active' => 'boolean',
+            'overage_unit_price' => 'decimal:2',
+            'active' => 'boolean',
         ];
     }
 

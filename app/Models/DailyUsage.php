@@ -16,18 +16,14 @@ class DailyUsage extends Model
         'merchant_id',
         'customer_id',
         'usage_date',
-        'event_count',
-        'total_units',
-        'last_event_at',
+        'quantity',
     ];
 
     protected function casts(): array
     {
         return [
             'usage_date' => 'date',
-            'event_count' => 'integer',
-            'total_units' => 'integer',
-            'last_event_at' => 'datetime',
+            'quantity' => 'integer',
         ];
     }
 
@@ -39,5 +35,10 @@ class DailyUsage extends Model
     public function customer(): BelongsTo
     {
         return $this->belongsTo(Customer::class);
+    }
+
+    public function subscription(): BelongsTo
+    {
+        return $this->belongsTo(Subscription::class);
     }
 }

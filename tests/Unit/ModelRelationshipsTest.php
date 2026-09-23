@@ -50,10 +50,7 @@ class ModelRelationshipsTest extends TestCase
         $this->assertBelongsTo($subscription->merchant(), Merchant::class);
         $this->assertBelongsTo($subscription->customer(), Customer::class);
         $this->assertBelongsTo($subscription->plan(), Plan::class);
-        $this->assertBelongsTo($subscription->previousSubscription(), Subscription::class);
-        $this->assertHasMany($subscription->nextSubscriptions(), Subscription::class);
         $this->assertHasMany($subscription->usageEvents(), UsageEvent::class);
-        $this->assertHasMany($subscription->invoiceLines(), InvoiceLine::class);
     }
 
     public function test_usage_event_relationships(): void
@@ -71,6 +68,7 @@ class ModelRelationshipsTest extends TestCase
 
         $this->assertBelongsTo($dailyUsage->merchant(), Merchant::class);
         $this->assertBelongsTo($dailyUsage->customer(), Customer::class);
+        $this->assertBelongsTo($dailyUsage->subscription(), Subscription::class);
     }
 
     public function test_invoice_relationships(): void
@@ -88,7 +86,6 @@ class ModelRelationshipsTest extends TestCase
         $invoiceLine = new InvoiceLine();
 
         $this->assertBelongsTo($invoiceLine->invoice(), Invoice::class);
-        $this->assertBelongsTo($invoiceLine->subscription(), Subscription::class);
     }
 
     private function assertBelongsTo(BelongsTo $relation, string $relatedModel): void

@@ -15,25 +15,23 @@ class Invoice extends Model
         'merchant_id',
         'customer_id',
         'subscription_id',
-        'period_start',
-        'period_end',
-        'issued_at',
-        'due_at',
+        'billing_period_start',
+        'billing_period_end',
         'status',
-        'subtotal_cents',
-        'total_cents',
+        'subtotal',
+        'total',
         'currency',
+        'issued_at',
     ];
 
     protected function casts(): array
     {
         return [
-            'period_start' => 'datetime',
-            'period_end' => 'datetime',
+            'billing_period_start' => 'datetime',
+            'billing_period_end' => 'datetime',
+            'subtotal' => 'decimal:2',
+            'total' => 'decimal:2',
             'issued_at' => 'datetime',
-            'due_at' => 'datetime',
-            'subtotal_cents' => 'integer',
-            'total_cents' => 'integer',
         ];
     }
 

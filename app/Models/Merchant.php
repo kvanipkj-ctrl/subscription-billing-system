@@ -12,8 +12,7 @@ class Merchant extends Model
 
     protected $fillable = [
         'name',
-        'slug',
-        'timezone',
+        'external_id',
     ];
 
     public function plans(): HasMany
